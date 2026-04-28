@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BotForge — Premium Bot Generator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="layout" id="app" style="display:none;">
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+        <div class="logo">
+            <div class="logo-text">Bot<span>Forge</span></div>
+            <div class="logo-sub">Premium Bot Generator</div>
+        </div>
+        <nav class="nav" id="nav-menu"></nav>
+        <div class="sidebar-footer">
+            <div class="ptero-status" id="ptero-status-bar">
+                <div class="status-dot" id="status-dot"></div>
+                <span id="status-text">Panel belum terhubung</span>
+            </div>
+            <div class="user-info" id="user-info">
+                <div class="user-name" id="user-name-display">Loading...</div>
+                <div id="subscription-info"></div>
+                <div class="logout-btn" onclick="logout()">🚪 Logout</div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main">
+        <div class="topbar">
+            <div class="page-title" id="page-title">Dashboard</div>
+            <div class="topbar-actions" id="topbar-actions"></div>
+        </div>
+        <div class="content" id="page-content">
+            <div class="loading">Loading...</div>
+        </div>
+    </main>
+</div>
+
+<!-- AUTH OVERLAY -->
+<div class="auth-overlay" id="auth-overlay">
+    <div class="auth-card">
+        <div class="auth-tabs">
+            <div class="auth-tab active" onclick="switchAuthTab('login')">Login</div>
+            <div class="auth-tab" onclick="switchAuthTab('register')">Register</div>
+        </div>
+        <div id="login-form" class="auth-form active">
+            <div class="form-group">
+                <label>Username</label>
+                <input type="text" id="login-username" placeholder="Username">
+            </div>
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" id="login-password" placeholder="Password">
+            </div>
+            <button class="btn btn-primary" style="width:100%;" onclick="doLogin()">Login</button>
+        </div>
+        <div id="register-form" class="auth-form">
+            <div class="form-group">
+                <label>Username</label>
+                <input type="text" id="reg-username" placeholder="Username">
+            </div>
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" id="reg-email" placeholder="Email">
+            </div>
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" id="reg-password" placeholder="Password (min. 4 karakter)">
+            </div>
+            <div class="form-group">
+                <label>Confirm Password</label>
+                <input type="password" id="reg-confirm" placeholder="Confirm Password">
+            </div>
+            <button class="btn btn-primary" style="width:100%;" onclick="doRegister()">Register</button>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL SUBSCRIPTION -->
+<div class="modal-bg" id="subscription-modal">
+    <div class="modal" style="max-width: 900px;">
+        <div class="modal-title">🎯 Pilih Paket Subscription</div>
+        <div id="pricing-list" class="pricing-grid"></div>
+        <div class="modal-footer">
+            <button class="btn" onclick="closeSubscriptionModal()">Batal</button>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL ADD MENU (ADMIN) -->
+<div class="modal-bg" id="add-menu-modal">
+    <div class="modal">
+        <div class="modal-title">➕ Tambah Menu / Perintah</div>
+        <div class="form-group">
+            <label>Nama Perintah (tanpa prefix)</label>
+            <input type="text" id="menu-cmd" placeholder="contoh: help, ping">
+        </div>
+        <div class="form-group">
+            <label>Deskripsi</label>
+            <input type="text" id="menu-desc" placeholder="Deskripsi singkat">
+        </div>
+        <div class="form-group">
+            <label>Tipe Bot</label>
+            <select id="menu-type">
+                <option value="all">Semua (WA & TG)</option>
+                <option value="wa">WhatsApp Only</option>
+                <option value="tg">Telegram Only</option>
+            </select>
+        </div>
+        <div class="modal-footer">
+            <button class="btn" onclick="closeMenuModal()">Batal</button>
+            <button class="btn btn-primary" onclick="addNewMenu()">Tambah</button>
+        </div>
+    </div>
+</div>
+
+<script src="database.js"></script>
+<script src="auth.js"></script>
+<script src="subscription.js"></script>
+<script src="pterodactyl.js"></script>
+<script src="bot-generator.js"></script>
+<script src="admin.js"></script>
+<script src="main.js"></script>
+</body>
+</html>
